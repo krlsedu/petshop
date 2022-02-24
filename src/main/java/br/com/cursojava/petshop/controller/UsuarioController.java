@@ -25,12 +25,14 @@ public class UsuarioController {
         return "Olá";
     }
 
+    //Read do CRUD
     @GetMapping("/todos-usuarios")
     public ResponseEntity<List<Usuario>> getTodosUsuarios() {
         List<Usuario> usuarios = usuarioService.getUsuarios();
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
 
+    //Create do Crud
     @PostMapping(value = "/salva-usuario", consumes = "application/json")
     public ResponseEntity<Usuario> salvaUsuario(@RequestBody Usuario usuario) {
         usuario = usuarioService.salvaUsuario(usuario);
