@@ -4,10 +4,7 @@ import br.com.cursojava.petshop.model.Usuario;
 import br.com.cursojava.petshop.service.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +17,11 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping("/index")
-    public String index() {
-        return "Olá";
+    //Create do Crud
+    @PostMapping(value = "/salva-usuario", consumes = "application/json")
+    public ResponseEntity<Usuario> salvaUsuario(@RequestBody Usuario usuario) {
+        usuario = usuarioService.criarUsuario(usuario);
+        return new ResponseEntity<>(usuario, HttpStatus.CREATED);
     }
 
     //Read do CRUD
@@ -32,10 +31,21 @@ public class UsuarioController {
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
 
-    //Create do Crud
-    @PostMapping(value = "/salva-usuario", consumes = "application/json")
-    public ResponseEntity<Usuario> salvaUsuario(@RequestBody Usuario usuario) {
-        usuario = usuarioService.salvaUsuario(usuario);
-        return new ResponseEntity<>(usuario, HttpStatus.CREATED);
+    @GetMapping("/usuarios/{nome}")
+    public ResponseEntity<List<Usuario>> getUsuariosPorNome(@PathVariable String nome) {
+        return new ResponseEntity<>(usuarioService.getUsuariosPorNome(nome), HttpStatus.OK);
+    }
+
+    //Alter do Crud
+    @PutMapping(value = "/altera-usuario", consumes = "application/json")
+    public ResponseEntity<Usuario> alteraUsuario(@RequestBody Usuario usuario) {
+        usuario = usuarioService.alteraUsuario(usuario);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/deleta-usuario", consumes = "application/json")
+    public ResponseEntity<Usuario> deletaUsuario(@RequestBody Usuario usuario){
+        usuario = usuarioService.deletaUsuario(usuario);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 }

@@ -1,6 +1,5 @@
 package br.com.cursojava.petshop.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -13,8 +12,8 @@ import javax.persistence.Id;
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
     private String nome;
 
