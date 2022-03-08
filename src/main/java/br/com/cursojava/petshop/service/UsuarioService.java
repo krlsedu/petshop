@@ -23,10 +23,6 @@ public class UsuarioService {
         return usuarioRepository.findByNome(nome);
     }
 
-    public List<Usuario> getUsuariosPorEmail(String email){
-        return usuarioRepository.findByEmail(email);
-    }
-
     public Usuario criarUsuario(Usuario usuario) {
         if (usuario.getId() != null) {
             throw new RuntimeException("Ao criar um usuário não deve ser informado o ID!");

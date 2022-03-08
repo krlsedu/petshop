@@ -18,8 +18,8 @@ public class UsuarioController {
     }
 
     //Create do Crud
-    @PostMapping(value = "/salva-usuario", consumes = "application/json")
-    public ResponseEntity<Usuario> salvaUsuario(@RequestBody Usuario usuario) {
+    @PostMapping(value = "/criar-usuario", consumes = "application/json")
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) {
         usuario = usuarioService.criarUsuario(usuario);
         return new ResponseEntity<>(usuario, HttpStatus.CREATED);
     }
@@ -43,6 +43,7 @@ public class UsuarioController {
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
+    //Delete do CRUD
     @DeleteMapping(value = "/deleta-usuario", consumes = "application/json")
     public ResponseEntity<Usuario> deletaUsuario(@RequestBody Usuario usuario){
         usuario = usuarioService.deletaUsuario(usuario);

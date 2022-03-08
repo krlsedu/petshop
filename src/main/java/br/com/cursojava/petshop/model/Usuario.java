@@ -19,4 +19,6 @@ public class Usuario {
 
     private String email;
 
+    private Integer idade;
+
 }
