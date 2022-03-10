@@ -2,6 +2,7 @@ package br.com.cursojava.petshop.controller;
 
 import br.com.cursojava.petshop.model.Usuario;
 import br.com.cursojava.petshop.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
