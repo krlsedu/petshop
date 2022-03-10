@@ -43,4 +43,10 @@ public class AnimalController {
         animal = animalService.deletaAnimal(animal);
         return new ResponseEntity<>(animal, HttpStatus.ACCEPTED);
     }
+
+    @DeleteMapping(value = "/animal/{id}")
+    public ResponseEntity<String> deletaAnimal(@PathVariable Long id){
+        animalService.deletaAnimalPorId(id);
+        return new ResponseEntity<>("OK",HttpStatus.ACCEPTED);
+    }
 }

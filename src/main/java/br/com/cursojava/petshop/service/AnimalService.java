@@ -9,37 +9,45 @@ import java.util.List;
 @Service
 public class AnimalService {
 
-    private final AnimalRepository repository;
+    private final AnimalRepository animalRepository;
 
-    public AnimalService(AnimalRepository repository) {
-        this.repository = repository;
+    public AnimalService(AnimalRepository animalRepository) {
+        this.animalRepository = animalRepository;
     }
 
     public List<Animal> getAnimais() {
-        return (List<Animal>) repository.findAll();
+        return (List<Animal>) animalRepository.findAll();
     }
 
     public Animal criarAnimal(Animal animal) {
         if (animal.getId() != null) {
             throw new RuntimeException("Ao criar um animal não deve ser informado o ID!");
         }
-        return repository.save(animal);
+        return animalRepository.save(animal);
     }
 
     public Animal alteraAnimal(Animal animal) {
-        if (repository.existsById(animal.getId())) {
-            return repository.save(animal);
+        if (animalRepository.existsById(animal.getId())) {
+            return animalRepository.save(animal);
         } else {
-            throw new RuntimeException(String.format("O anima com id %d não existe!", animal.getId()));
+            throw new RuntimeException(String.format("O animal com id %d não existe!", animal.getId()));
         }
     }
 
     public Animal deletaAnimal(Animal animal) {
-        if (repository.existsById(animal.getId())) {
-            repository.delete(animal);
+        if (animalRepository.existsById(animal.getId())) {
+            animalRepository.delete(animal);
             return animal;
         } else {
             throw new RuntimeException(String.format("O animal com id %d não existe!", animal.getId()));
+        }
+    }
+
+    public void deletaAnimalPorId(Long id){
+        if (animalRepository.existsById(id)) {
+            animalRepository.deleteById(id);
+        } else {
+            throw new RuntimeException(String.format("O animal com id %d não existe!", id));
         }
     }
 }
