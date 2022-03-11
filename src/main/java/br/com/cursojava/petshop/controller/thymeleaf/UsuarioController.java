@@ -17,20 +17,24 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping("/cadastro-usuario")
+    //Tela de listagem de usuários
+    @GetMapping("/listar-usuarios")
     public String getCadastroUsuarios(Model model){
         model.addAttribute("usuarios", usuarioService.getUsuarios());
-        return "usuarios";
+        return "listar-usuarios";
     }
 
+    //Tela de cadastro de usuário
     @GetMapping("/adicionar-usuario")
     public String getAdicionarUsuarios(Usuario usuario){
         return "adicionar-usuario";
     }
 
+
+    //url de gravação dos dados do usuário
     @PostMapping("/salvar-usuario")
     public String salvarUsuario(Usuario usuario, BindingResult bindingResult){
         usuarioService.criarUsuario(usuario);
-        return "redirect:/cadastro-usuario";
+        return "redirect:/listar-usuarios";
     }
 }

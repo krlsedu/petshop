@@ -26,10 +26,14 @@
                                 <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email">
                                 <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
                             </div>
+                            <div class="form-group col-md-6">
+                                <label for="email" class="col-form-label">Idade</label>
+                                <input type="text" th:field="*{idade}" class="form-control" id="idade" placeholder="Idade">
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mt-5">
-                                <input type="submit" class="btn btn-primary" value="Add User">
+                                <input type="submit" class="btn btn-primary" value="Salvar usuário">
                             </div>
                         </div>    
                     </form>
