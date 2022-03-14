@@ -46,4 +46,8 @@ public class UsuarioService {
             throw new RuntimeException(String.format("O usuário com id %d não existe!", usuario.getId()));
         }
     }
+
+    public Usuario getUsuarioPorId(Long id){
+        return usuarioRepository.findById(id).orElse(null);
+    }
 }
