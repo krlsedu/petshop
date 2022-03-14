@@ -16,7 +16,11 @@ public class ClienteService {
     }
 
     public List<Cliente> getClientes() {
-        return (List<Cliente>) repository.findAll();
+        List<Cliente> clienteList = (List<Cliente>) repository.findAll();
+        if (clienteList.isEmpty()) {
+            return null;
+        }
+        return clienteList;
     }
 
     public Cliente criarCliente(Cliente cliente) {

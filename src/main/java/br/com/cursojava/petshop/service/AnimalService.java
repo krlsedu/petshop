@@ -16,7 +16,11 @@ public class AnimalService {
     }
 
     public List<Animal> getAnimais() {
-        return (List<Animal>) animalRepository.findAll();
+        List<Animal> animalList = (List<Animal>) animalRepository.findAll();
+        if (animalList.isEmpty()) {
+            return null;
+        }
+        return animalList;
     }
 
     public Animal criarAnimal(Animal animal) {
