@@ -16,10 +16,14 @@ public class UsuarioService {
     }
 
     public List<Usuario> getUsuarios() {
-        return (List<Usuario>) usuarioRepository.findAll();
+        List<Usuario> usuarioList = (List<Usuario>) usuarioRepository.findAll();
+        if (usuarioList.isEmpty()) {
+            return null;
+        }
+        return usuarioList;
     }
 
-    public List<Usuario> getUsuariosPorNome(String nome){
+    public List<Usuario> getUsuariosPorNome(String nome) {
         return usuarioRepository.findByNome(nome);
     }
 
@@ -38,12 +42,35 @@ public class UsuarioService {
         }
     }
 
-    public Usuario deletaUsuario(Usuario usuario){
+    public Usuario deletaUsuario(Usuario usuario) {
         if (usuarioRepository.existsById(usuario.getId())) {
             usuarioRepository.delete(usuario);
             return usuario;
         } else {
             throw new RuntimeException(String.format("O usuário com id %d não existe!", usuario.getId()));
+        }
+    }
+
+    public void deletaUsuario(Long id) {
+        if (usuarioRepository.existsById(id)) {
+            usuarioRepository.deleteById(id);
+        } else {
+            throw new RuntimeException(String.format("O usuário com id %d não existe!", id));
+        }
+    }
+
+    public Usuario getUsuarioById(Long id) {
+        if (id == null) {
+            return new Usuario();
+        }
+        return usuarioRepository.findById(id).orElse(null);
+    }
+
+    public void criaOuAlteraUsuario(Usuario usuario) {
+        if (usuario.getId() == null) {
+            criarUsuario(usuario);
+        } else {
+            alteraUsuario(usuario);
         }
     }
 }
