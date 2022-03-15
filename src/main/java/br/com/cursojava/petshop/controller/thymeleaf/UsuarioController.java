@@ -36,7 +36,7 @@ public class UsuarioController {
 
     //url de gravação dos dados do usuário
     @PostMapping("/salvar-usuario")
-    public String salvarUsuario(Usuario usuario, BindingResult bindingResult) {
+    public String salvarUsuario(Usuario usuario) {
         usuarioService.criaOuAlteraUsuario(usuario);
         return "redirect:/listar-usuarios";
     }

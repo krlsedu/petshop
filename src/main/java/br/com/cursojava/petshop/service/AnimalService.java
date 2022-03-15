@@ -54,4 +54,21 @@ public class AnimalService {
             throw new RuntimeException(String.format("O animal com id %d não existe!", id));
         }
     }
+
+    public Animal getAnimalById(Long id){
+
+        if (id == null) {
+            return new Animal();
+        }
+
+        return animalRepository.findById(id).orElse(new Animal());
+    }
+
+    public void criarOuSalvarAnimal(Animal animal){
+        if (animal.getId() == null) {
+            criarAnimal(animal);
+        }else {
+            alteraAnimal(animal);
+        }
+    }
 }

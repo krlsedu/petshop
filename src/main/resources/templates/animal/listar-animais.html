@@ -31,6 +31,10 @@
                         <td th:text="${animal.raca}"></td>
                         <td th:text="${animal.tipo}"></td>
                         <td th:text="${animal.idade}"></td>
+                        <td><a th:href="@{/adicionar-animal?id={id_animal}(id_animal=${animal.id})}"
+                               class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                        <td><a th:href="@{/deletar-animal/{id}(id=${animal.id})}" class="btn btn-primary"><i
+                                class="fas fa-user-times ml-2"></i></a></td>
                     </tr>
                     </tbody>
                 </table>
