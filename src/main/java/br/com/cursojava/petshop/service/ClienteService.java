@@ -46,4 +46,28 @@ public class ClienteService {
             throw new RuntimeException(String.format("O Cliente com id %d não existe!", cliente.getId()));
         }
     }
+
+    public void deletaClientePorId(Long id){
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        } else {
+            throw new RuntimeException(String.format("O Cliente com id %d não existe!", id));
+        }
+    }
+
+    public Cliente getClienteById(Long id){
+        if (id == null) {
+            return new Cliente();
+        }
+
+        return repository.findById(id).orElse(new Cliente());
+    }
+
+    public void criarOuAlterarCLiente(Cliente cliente){
+        if (cliente.getId() == null) {
+            criarCliente(cliente);
+        }else {
+            alteraCliente(cliente);
+        }
+    }
 }
