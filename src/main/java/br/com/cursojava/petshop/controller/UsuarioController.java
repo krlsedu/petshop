@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Api(value = "Controller de usuários",tags = "Controller de usuários")
+@Api(value = "Controller de usuários",
+        tags = {"Controller de usuários","Cadastros"})
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -58,7 +59,7 @@ public class UsuarioController {
 
     //Delete do CRUD
     @DeleteMapping(value = "/deleta-usuario", consumes = "application/json")
-    public ResponseEntity<UsuarioDTO> deletaUsuario(@RequestBody UsuarioDTO usuario){
+    public ResponseEntity<UsuarioDTO> deletaUsuario(@RequestBody UsuarioDTO usuario) {
         Usuario deletaUsuario = usuarioService.deletaUsuario(UsuarioMapper.dtoToEntity(usuario));
         return new ResponseEntity<>(UsuarioMapper.entityToDTO(deletaUsuario), HttpStatus.OK);
     }

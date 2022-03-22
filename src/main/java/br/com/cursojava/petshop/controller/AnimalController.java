@@ -2,6 +2,7 @@ package br.com.cursojava.petshop.controller;
 
 import br.com.cursojava.petshop.model.Animal;
 import br.com.cursojava.petshop.service.AnimalService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
+@Api(tags = "Cadastros")
 public class AnimalController {
 
     private final AnimalService animalService;

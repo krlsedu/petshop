@@ -2,15 +2,16 @@ package br.com.cursojava.petshop.controller.thymeleaf;
 
 import br.com.cursojava.petshop.model.Usuario;
 import br.com.cursojava.petshop.service.UsuarioService;
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller("UsuarioControllerThymeleaf")
+@Api(tags = "Cadastros")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
