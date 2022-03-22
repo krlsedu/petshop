@@ -2,13 +2,11 @@ package br.com.cursojava.petshop.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
 public class Usuario {
 
     @Id
