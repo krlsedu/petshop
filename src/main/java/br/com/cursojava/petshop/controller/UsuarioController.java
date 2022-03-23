@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class UsuarioController {
             @ApiResponse(code = 201, message = "O usuário foi criado com sucesso")
     })
     @PostMapping(value = "/criar-usuario", consumes = "application/json")
-    public ResponseEntity<UsuarioDTO> criarUsuario(@RequestBody UsuarioDTO usuario) {
+    public ResponseEntity<UsuarioDTO> criarUsuario(@Valid @RequestBody UsuarioDTO usuario) {
         Usuario usuarioConvertido = UsuarioMapper.dtoToEntity(usuario);
         usuario = UsuarioMapper.entityToDTO(usuarioService.criarUsuario(usuarioConvertido));
         return new ResponseEntity<>(usuario, HttpStatus.CREATED);
@@ -51,7 +52,7 @@ public class UsuarioController {
 
     //Alter do Crud
     @PutMapping(value = "/altera-usuario", consumes = "application/json")
-    public ResponseEntity<UsuarioDTO> alteraUsuario(@RequestBody UsuarioDTO usuario) {
+    public ResponseEntity<UsuarioDTO> alteraUsuario(@Valid @RequestBody UsuarioDTO usuario) {
         Usuario usuarioConvertido = UsuarioMapper.dtoToEntity(usuario);
         usuario = UsuarioMapper.entityToDTO(usuarioService.alteraUsuario(usuarioConvertido));
         return new ResponseEntity<>(usuario, HttpStatus.OK);

@@ -1,5 +1,6 @@
 package br.com.cursojava.petshop.service;
 
+import br.com.cursojava.petshop.exceptions.PetShopException;
 import br.com.cursojava.petshop.model.Usuario;
 import br.com.cursojava.petshop.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class UsuarioService {
 
     public Usuario criarUsuario(Usuario usuario) {
         if (usuario.getId() != null) {
-            throw new RuntimeException("Ao criar um usuário não deve ser informado o ID!");
+            throw new PetShopException("Ao criar um usuário não deve ser informado o ID!");
         }
         return usuarioRepository.save(usuario);
     }
@@ -38,7 +39,7 @@ public class UsuarioService {
         if (usuarioRepository.existsById(usuario.getId())) {
             return usuarioRepository.save(usuario);
         } else {
-            throw new RuntimeException(String.format("O usuário com id %d não existe!", usuario.getId()));
+            throw new PetShopException(String.format("O usuário com id %d não existe!", usuario.getId()));
         }
     }
 
@@ -47,7 +48,7 @@ public class UsuarioService {
             usuarioRepository.delete(usuario);
             return usuario;
         } else {
-            throw new RuntimeException(String.format("O usuário com id %d não existe!", usuario.getId()));
+            throw new PetShopException(String.format("O usuário com id %d não existe!", usuario.getId()));
         }
     }
 
