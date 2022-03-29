@@ -2,7 +2,6 @@ package br.com.cursojava.petshop.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.*;
@@ -33,6 +32,5 @@ public class UsuarioDTO {
     private Date dataNascimento;
 
     @CPF
-    @CNPJ
     private String cpf;
 }

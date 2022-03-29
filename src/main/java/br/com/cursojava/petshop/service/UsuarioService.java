@@ -56,7 +56,7 @@ public class UsuarioService {
         if (usuarioRepository.existsById(id)) {
             usuarioRepository.deleteById(id);
         } else {
-            throw new RuntimeException(String.format("O usuário com id %d não existe!", id));
+            throw new PetShopException(String.format("O usuário com id %d não existe!", id));
         }
     }
 

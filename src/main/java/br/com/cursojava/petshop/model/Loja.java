@@ -9,13 +9,10 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class Cliente {
+public class Loja {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String nome;
-    private String telefone;
-    private String cpf;
-    private String email;
+    private String endereco;
 }
