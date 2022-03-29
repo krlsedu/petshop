@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 public class MapperEntidadeDTO<U, T> {
     private final ObjectMapper objectMapper;
 
-    private final Class<U> uClass;
-    private final Class<T> tClass;
+    private final Class<U> entityClass;
+    private final Class<T> dtoClass;
 
-    public MapperEntidadeDTO(Class<U> uClass, Class<T> tClass) {
-        this.uClass = uClass;
-        this.tClass = tClass;
+    public MapperEntidadeDTO(Class<U> entityClass, Class<T> dtoClass) {
+        this.entityClass = entityClass;
+        this.dtoClass = dtoClass;
         objectMapper = new ObjectMapper()
                 .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
@@ -29,7 +29,7 @@ public class MapperEntidadeDTO<U, T> {
     }
 
     public U toEntity(T t) {
-        return objectMapper.convertValue(t, uClass);
+        return objectMapper.convertValue(t, entityClass);
     }
 
     public List<T> toDto(List<U> us) {
@@ -37,6 +37,6 @@ public class MapperEntidadeDTO<U, T> {
     }
 
     public T toDto(U u) {
-        return objectMapper.convertValue(u, tClass);
+        return objectMapper.convertValue(u, dtoClass);
     }
 }
