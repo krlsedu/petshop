@@ -1,5 +1,6 @@
 package br.com.cursojava.petshop.service;
 
+import br.com.cursojava.petshop.exceptions.PetShopException;
 import br.com.cursojava.petshop.model.Cliente;
 import br.com.cursojava.petshop.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
@@ -68,6 +69,12 @@ public class ClienteService {
             criarCliente(cliente);
         }else {
             alteraCliente(cliente);
+        }
+    }
+
+    public void validaClienteExistente(Cliente cliente){
+        if (!repository.existsById(cliente.getId())) {
+            throw new PetShopException("O cliente informada não está cadastrado!");
         }
     }
 }

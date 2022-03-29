@@ -71,4 +71,10 @@ public class LojaService {
             alteraLoja(loja);
         }
     }
+
+    public void validaLojaExistente(Loja loja){
+        if (!repository.existsById(loja.getId())) {
+            throw new PetShopException("A loja informada não está cadastrada!");
+        }
+    }
 }
