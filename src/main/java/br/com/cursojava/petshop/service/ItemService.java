@@ -71,4 +71,10 @@ public class ItemService {
             alteraItem(item);
         }
     }
+
+    public void validaItemExistente(Item item){
+        if (!repository.existsById(item.getId())) {
+            throw new PetShopException("O item informado não está cadastrado!");
+        }
+    }
 }
