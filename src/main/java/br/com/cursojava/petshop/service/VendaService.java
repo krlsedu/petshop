@@ -52,14 +52,14 @@ public class VendaService {
         venda.setValorTotal(BigDecimal.ZERO);
         for (ItemVenda itemVenda : venda.getItensVenda()) {
             itemVenda.setVenda(venda);
+
             itemService.validaItemExistente(itemVenda.getItem());
+
             venda.setValorTotal(
                     venda.getValorTotal()
-                            .add(
-                                    itemVenda.getValorUnitario()
-                                            .multiply(
-                                                    new BigDecimal(
-                                                            itemVenda.getQuantidade()))));
+                            .add(itemVenda.getValorUnitario()
+                                    .multiply(new BigDecimal(
+                                            itemVenda.getQuantidade()))));
         }
 
         vendaRepository.save(venda);
