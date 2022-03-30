@@ -16,11 +16,11 @@ public class Venda {
     private Date dataVenda;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "loja_id")
     private Loja loja;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     private BigDecimal valorTotal;

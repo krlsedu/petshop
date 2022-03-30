@@ -20,7 +20,7 @@ public class VendaService {
         this.clienteService = clienteService;
     }
 
-    public Venda gravaVenda(Venda venda) {
+    public void gravaVenda(Venda venda) {
 
         if (venda.getId() != null) {
             throw new PetShopException("Para realizar uma venda, não deve ser informado o id");
@@ -35,9 +35,9 @@ public class VendaService {
         if (venda.getCliente().getId() == null){
             throw new PetShopException("Deve ser informado o código de um Cliente!");            
         } else {
-            lojaService.validaLojaExistente(venda.getLoja());
+            clienteService.validaClienteExistente(venda.getCliente());
         }
 
-        return vendaRepository.save(venda);
+        vendaRepository.save(venda);
     }
 }

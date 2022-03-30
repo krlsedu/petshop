@@ -1,6 +1,5 @@
 package br.com.cursojava.petshop.mapper;
 
-import br.com.cursojava.petshop.dto.DTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +8,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MapperEntidadeDTO<U, T extends DTO> {
+public class MapperEntidadeDTO<U, T> {
     private final ObjectMapper objectMapper;
 
     private final Class<U> entityClass;
