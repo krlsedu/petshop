@@ -6,7 +6,9 @@ import br.com.cursojava.petshop.model.Venda;
 import br.com.cursojava.petshop.repository.VendaRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class VendaService {
@@ -29,6 +31,11 @@ public class VendaService {
         this.itemService = itemService;
     }
 
+    public List<Venda> getVendas(){
+        return (List<Venda>) vendaRepository.findAll();
+    }
+
+    @Transactional
     public void gravaVenda(Venda venda) {
 
         if (venda.getId() != null) {
@@ -47,10 +54,13 @@ public class VendaService {
             clienteService.validaClienteExistente(venda.getCliente());
         }
 
+        List<ItemVenda> itemVendas = venda.getItensVenda();
+
+        venda.setItensVenda(null);
         venda = vendaRepository.save(venda);
 
         venda.setValorTotal(BigDecimal.ZERO);
-        for (ItemVenda itemVenda : venda.getItensVenda()) {
+        for (ItemVenda itemVenda : itemVendas) {
             itemVenda.setVenda(venda);
 
             itemService.validaItemExistente(itemVenda.getItem());
@@ -64,7 +74,7 @@ public class VendaService {
 
         vendaRepository.save(venda);
 
-        itemVendaService.gravaItemVenda(venda.getItensVenda());
+        itemVendaService.gravaItemVenda(itemVendas);
 
     }
 }

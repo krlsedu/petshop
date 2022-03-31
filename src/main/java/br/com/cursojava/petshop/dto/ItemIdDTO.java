@@ -5,4 +5,6 @@ import lombok.Data;
 @Data
 public class ItemIdDTO {
     private Long id;
+
+    private String nome;
 }

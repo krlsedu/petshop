@@ -1,5 +1,6 @@
 package br.com.cursojava.petshop.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,7 +27,8 @@ public class Venda {
 
     private BigDecimal valorTotal;
 
-    @Transient
+    @OneToMany(mappedBy = "venda")
+    @JsonManagedReference
     private List<ItemVenda> itensVenda;
 
 
