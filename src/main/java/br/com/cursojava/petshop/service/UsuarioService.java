@@ -3,12 +3,18 @@ package br.com.cursojava.petshop.service;
 import br.com.cursojava.petshop.exceptions.PetShopException;
 import br.com.cursojava.petshop.model.Usuario;
 import br.com.cursojava.petshop.repository.UsuarioRepository;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
 
@@ -73,5 +79,15 @@ public class UsuarioService {
         } else {
             alteraUsuario(usuario);
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (usuario == null) {
+            throw new PetShopException("Usuário ou senha incorretos!");
+        }
+        var lista = new SimpleGrantedAuthority(usuario.getTipoUsuario().getChave());
+        return new User(email, usuario.getSenha(), Collections.singleton(lista));
     }
 }

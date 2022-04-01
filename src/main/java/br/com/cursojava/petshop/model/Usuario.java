@@ -1,5 +1,6 @@
 package br.com.cursojava.petshop.model;
 
+import br.com.cursojava.petshop.enums.TipoUsuario;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,5 +19,9 @@ public class Usuario {
     private String email;
 
     private Integer idade;
+
+    private String senha;
+
+    private TipoUsuario tipoUsuario;
 
 }

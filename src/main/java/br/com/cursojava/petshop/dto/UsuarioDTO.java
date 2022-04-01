@@ -1,11 +1,10 @@
 package br.com.cursojava.petshop.dto;
 
+import br.com.cursojava.petshop.enums.TipoUsuario;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.*;
-import java.util.Date;
 
 @Data
 public class UsuarioDTO {
@@ -28,9 +27,10 @@ public class UsuarioDTO {
     @Email(message = "O email deve respeitar o padrão usuario@petshop.com.br")
     private String email;
 
-    @PastOrPresent(message = "A data de nascimento não pode ser futura!")
-    private Date dataNascimento;
 
-    @CPF
-    private String cpf;
+    @NotNull
+    private String senha;
+
+    private TipoUsuario tipoUsuario;
+
 }
