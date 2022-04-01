@@ -27,7 +27,7 @@ public class Venda {
 
     private BigDecimal valorTotal;
 
-    @OneToMany(mappedBy = "venda")
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.REMOVE)
     @JsonManagedReference
     private List<ItemVenda> itensVenda;
 
