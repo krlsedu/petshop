@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
+//@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "venda_id,item_id")})
 public class ItemVenda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

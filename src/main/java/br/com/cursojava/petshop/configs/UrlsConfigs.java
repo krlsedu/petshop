@@ -1,6 +1,7 @@
 package br.com.cursojava.petshop.configs;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -28,6 +29,9 @@ public class UrlsConfigs extends ResourceServerConfigurerAdapter {
                 .antMatchers("/api/v2/**").permitAll()
                 .antMatchers("/v2/api-docs/**").permitAll()
                 .antMatchers("/criar-usuario").permitAll()
+                .antMatchers("/todos-usuarios").hasAnyAuthority("ADMIN","SUPERADMIN")
+                .antMatchers("/todos-cliente").hasAuthority("USUARIO")
+                .antMatchers(HttpMethod.DELETE, "/venda/**").hasAuthority("SUPERADMIN")
                 .anyRequest().authenticated().and().httpBasic();
     }
 }

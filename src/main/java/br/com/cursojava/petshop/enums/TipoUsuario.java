@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TipoUsuario {
 	USUARIO("USUARIO", "Usuário"),
-	ADMIN("ADMIN", "ADMIN");
-	
+	ADMIN("ADMIN", "ADMIN"),
+	SUPERADMIN("SUPERADMIN", "Super administrador");
+
 	private String chave;
 	
 	private String descricao;
