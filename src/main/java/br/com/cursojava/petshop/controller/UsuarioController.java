@@ -1,5 +1,6 @@
 package br.com.cursojava.petshop.controller;
 
+import br.com.cursojava.petshop.dto.TokenDTO;
 import br.com.cursojava.petshop.dto.UsuarioDTO;
 import br.com.cursojava.petshop.mapper.UsuarioMapper;
 import br.com.cursojava.petshop.model.Usuario;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "Controller de usuários",
-        tags = {"Controller de usuários","Cadastros"})
+        tags = {"Controller de usuários", "Cadastros"})
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -63,5 +64,10 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> deletaUsuario(@RequestBody UsuarioDTO usuario) {
         Usuario deletaUsuario = usuarioService.deletaUsuario(UsuarioMapper.dtoToEntity(usuario));
         return new ResponseEntity<>(UsuarioMapper.entityToDTO(deletaUsuario), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/autenticar", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<TokenDTO> autentica(@RequestBody UsuarioDTO usuarioDTO) {
+        return new ResponseEntity<>(usuarioService.autentica(UsuarioMapper.dtoToEntity(usuarioDTO)), HttpStatus.OK);
     }
 }

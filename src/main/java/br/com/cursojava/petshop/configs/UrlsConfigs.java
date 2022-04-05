@@ -22,7 +22,11 @@ public class UrlsConfigs extends ResourceServerConfigurerAdapter {
         httpSecurity
                 .authorizeRequests()
                 .antMatchers("/autenticar").permitAll()
-                .antMatchers("/swagger/**").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/api/v2/**").permitAll()
+                .antMatchers("/v2/api-docs/**").permitAll()
                 .antMatchers("/criar-usuario").permitAll()
                 .anyRequest().authenticated().and().httpBasic();
     }
